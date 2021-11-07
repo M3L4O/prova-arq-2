@@ -81,7 +81,7 @@ Registers: MIC_Banck_Registers
     A_Address => A,
     B_Address => B,
     C_Address => C,
-    MUX_A    => A_MUX,
+    MUX_A     => A_MUX,
     MUX_B     => B_MUX,
     MUX_C     => C_MUX,
     C_Input   => C_BUS,

@@ -37,30 +37,29 @@ SIGNAL DATA_OK_Signal 		: STD_LOGIC := '0';
 
 COMPONENT MIC_Project IS
 	PORT (
-		 RESET 			: IN STD_LOGIC;
-		 CLK 			: IN STD_LOGIC;
-		 AMUX  			: IN STD_LOGIC;
-		 ALU   			: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-		 MBR   			: IN STD_LOGIC;
-		 MAR   			: IN STD_LOGIC;
-		 RD    			: IN STD_LOGIC;
-		 WR    			: IN STD_LOGIC;
-		 ENC   			: IN STD_LOGIC;
-		 C     			: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-		 B     			: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-		 A     			: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-		 MUX_A	        : IN std_logic_vector(1 DOWNTO 0);
-		 MUX_B		    : IN std_logic_vector(1 DOWNTO 0);
-		 MUX_C		    : IN std_logic_vector(1 DOWNTO 0);
-		 MEM_TO_MBR 	: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		 DATA_OK 		: IN STD_LOGIC;
-		
-		 MBR_TO_MEM 	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-		 MAR_OUTPUT 	: OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
-		 RD_OUTPUT 		: OUT STD_LOGIC;
-		 WR_OUTPUT 		: OUT STD_LOGIC;
-		 Z         		: OUT STD_LOGIC;
-		 N         		: OUT STD_LOGIC);
+		CLK             :   IN STD_LOGIC;
+		RESET           :   IN STD_LOGIC;
+		AMUX            :   IN STD_LOGIC;
+		ALU             :   IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		MBR             :   IN STD_LOGIC;
+		MAR             :   IN STD_LOGIC;
+		RD              :   IN STD_LOGIC;
+		WR              :   IN STD_LOGIC;
+		ENC             :   IN STD_LOGIC;  
+		C               :   IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		B               :   IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		A               :   IN STD_LOGIC_VECTOR(3 DOWNTO 0);    
+		MEM_TO_MBR      :   IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		DATA_OK         :   IN STD_LOGIC;
+		A_MUX	        :   IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		B_MUX		    :   IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		C_MUX		    :   IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		MBR_TO_MEM      :   OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+		MAR_OUTPUT      :   OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+		RD_OUTPUT       :   OUT STD_LOGIC;
+		WR_OUTPUT       :   OUT STD_LOGIC;
+		Z               :   OUT STD_LOGIC;
+		N               :   OUT STD_LOGIC);
 END COMPONENT;
 --------------------------------
 BEGIN
@@ -78,9 +77,9 @@ MIC : MIC_Project
 		A 				=> A_Signal,
 		B 				=> B_Signal,
 		C 				=> C_Signal,
-		MUX_A			=> A_MUX_Signal,
-		MUX_B			=> B_MUX_Signal,
-		MUX_C			=> C_MUX_Signal,
+		A_MUX			=> A_MUX_Signal,
+		B_MUX			=> B_MUX_Signal,
+		C_MUX			=> C_MUX_Signal,
 		MBR_TO_MEM 		=> MBR_TO_MEM_Signal,
 		MEM_TO_MBR	 	=> MEM_TO_MBR_Signal,
 		MAR_OUTPUT 		=> MAR_OUTPUT_Signal,
@@ -102,7 +101,7 @@ Clock_Process : PROCESS
     wait for Clk_period/2;  --for next 0.5 ns signal is '1'.
 
 
-IF (Clk_count = 12) THEN     
+IF (Clk_count = 40) THEN     
 REPORT "Stopping simulkation after 34 cycles";
     	  Wait;       
 END IF;
@@ -168,7 +167,7 @@ PROCESS
 		 wait for 40ns;
 
 		 AMUX_Signal 		<= '0';
-		 ALU_Signal  		<= "0011";
+		 ALU_Signal  		<= "0110";
 		 MBR_Signal			<= '1';
 		 MAR_Signal  		<= '0';
 		 RD_Signal			<= '0';
@@ -550,7 +549,7 @@ PROCESS
 			C_MUX_Signal		<= "00";
 			DATA_OK_Signal		<= '0';
 		end if ;
-
+			wait;
 END process;
 
 
