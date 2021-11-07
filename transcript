@@ -2,5 +2,10 @@
 # Compile of MIC_amux_alu.vhd was successful.
 # Compile of MIC_Banck_Registers.vhd was successful.
 # Compile of MIC_Project.vhd was successful.
-# Compile of MIC_Project_Testbench.vhd failed with 10 errors.
-# 4 compiles, 1 failed with 10 errors.
+# Compile of MIC_Project_Testbench.vhd failed with 3 errors.
+# 4 compiles, 1 failed with 3 errors.
+# Compile of MIC_amux_alu.vhd was successful.
+# Compile of MIC_Banck_Registers.vhd was successful.
+# Compile of MIC_Project.vhd was successful.
+# Compile of MIC_Project_Testbench.vhd failed with 2 errors.
+# 4 compiles, 1 failed with 2 errors.

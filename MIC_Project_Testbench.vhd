@@ -40,7 +40,7 @@ COMPONENT MIC_Project IS
 		 RESET 			: IN STD_LOGIC;
 		 CLK 			: IN STD_LOGIC;
 		 AMUX  			: IN STD_LOGIC;
-		 ALU   			: IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+		 ALU   			: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 		 MBR   			: IN STD_LOGIC;
 		 MAR   			: IN STD_LOGIC;
 		 RD    			: IN STD_LOGIC;
@@ -130,7 +130,7 @@ PROCESS
 		wait for 40ns;
 		 
 		 AMUX_Signal  		<= '1';
-		 ALU_Signal   		<= "00";
+		 ALU_Signal   		<= "0000";
 		 MBR_Signal   		<= '0';
 		 MAR_Signal   		<= '0';
 		 RD_Signal    		<= '0';
@@ -142,7 +142,7 @@ PROCESS
 		 A_MUX_Signal		<= "00";
 		 B_MUX_Signal		<= "00";
 		 C_MUX_Signal		<= "00";
-		 MEM_TO_MBR_Signal 	<= "00000000010101011";-- RA = A e RB = B
+		 MEM_TO_MBR_Signal 	<= "0000000010101011";-- RA = A e RB = B
 		 DATA_OK_Signal 	<= '1';
 		 
 		 -- Coloca o valor de MBR em IR e MBR novamente.

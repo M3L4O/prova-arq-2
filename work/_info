@@ -15,7 +15,7 @@ Z1 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z2 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 60
+!i122 73
 Z5 d/home/melao/Documentos/Codes/MIC1_Modificado
 Z6 8/home/melao/Documentos/Codes/MIC1_Modificado/MIC_amux_alu.vhd
 Z7 F/home/melao/Documentos/Codes/MIC1_Modificado/MIC_amux_alu.vhd
@@ -25,9 +25,9 @@ VEdoCT^ff3Y`zc_I@V;nAB3
 !s100 IajFiG9HYkf:X2aMCzXgK2
 Z8 OV;C;2020.1;71
 32
-Z9 !s110 1636321494
+Z9 !s110 1636321698
 !i10b 1
-Z10 !s108 1636321494.000000
+Z10 !s108 1636321697.000000
 Z11 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/melao/Documentos/Codes/MIC1_Modificado/MIC_amux_alu.vhd|
 Z12 !s107 /home/melao/Documentos/Codes/MIC1_Modificado/MIC_amux_alu.vhd|
 !i113 1
@@ -39,7 +39,7 @@ R2
 R3
 R4
 DEx4 work 12 mic_amux_alu 0 22 EdoCT^ff3Y`zc_I@V;nAB3
-!i122 60
+!i122 73
 l22
 L18 35
 V>>W1nAeEnQ2`o2FAi84Sz2
@@ -60,7 +60,7 @@ R1
 Z16 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 R3
 R4
-!i122 61
+!i122 74
 R5
 Z17 8/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Banck_Registers.vhd
 Z18 F/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Banck_Registers.vhd
@@ -72,9 +72,9 @@ R8
 32
 R9
 !i10b 1
-R10
-Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Banck_Registers.vhd|
-Z20 !s107 /home/melao/Documentos/Codes/MIC1_Modificado/MIC_Banck_Registers.vhd|
+Z19 !s108 1636321698.000000
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Banck_Registers.vhd|
+Z21 !s107 /home/melao/Documentos/Codes/MIC1_Modificado/MIC_Banck_Registers.vhd|
 !i113 1
 R13
 R14
@@ -84,7 +84,7 @@ R16
 R3
 R4
 DEx4 work 19 mic_banck_registers 0 22 flYYZ@1IR4l@5260Ah9_b2
-!i122 61
+!i122 74
 l30
 L21 70
 VSec9=Y[X;207KM:IR0E]50
@@ -93,22 +93,22 @@ R8
 32
 R9
 !i10b 1
-R10
 R19
 R20
+R21
 !i113 1
 R13
 R14
 Emic_project
-Z21 w1636233435
+Z22 w1636233435
 R1
 R16
 R3
 R4
-!i122 62
+!i122 75
 R5
-Z22 8/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project.vhd
-Z23 F/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project.vhd
+Z23 8/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project.vhd
+Z24 F/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project.vhd
 l0
 L5 1
 V<TTbAK?Z1BN@fD2]??gM[1
@@ -117,9 +117,9 @@ R8
 32
 R9
 !i10b 1
-R10
-Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project.vhd|
-Z25 !s107 /home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project.vhd|
+R19
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project.vhd|
+Z26 !s107 /home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project.vhd|
 !i113 1
 R13
 R14
@@ -129,7 +129,7 @@ R16
 R3
 R4
 DEx4 work 11 mic_project 0 22 <TTbAK?Z1BN@fD2]??gM[1
-!i122 62
+!i122 75
 l69
 L33 116
 V^eIU[30Skzh[5D[n_Q<4T0
@@ -138,19 +138,19 @@ R8
 32
 R9
 !i10b 1
-R10
-R24
+R19
 R25
+R26
 !i113 1
 R13
 R14
 Emic_project_testbench
-w1636321466
+w1636321691
 R1
 R16
 R3
 R4
-!i122 63
+!i122 76
 R5
 8/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project_Testbench.vhd
 F/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project_Testbench.vhd
@@ -160,9 +160,9 @@ V6fBE]ST]KLG_AeeW8@=e00
 !s100 CY1F<zR28X5IVd<az@Bch3
 R8
 32
-!s110 1636321495
+R9
 !i10b 1
-!s108 1636321495.000000
+R19
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project_Testbench.vhd|
 !s107 /home/melao/Documentos/Codes/MIC1_Modificado/MIC_Project_Testbench.vhd|
 !i113 1
