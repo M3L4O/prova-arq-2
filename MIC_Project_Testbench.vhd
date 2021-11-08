@@ -34,7 +34,6 @@ SIGNAl WR_OUTPUT_Signal		: STD_LOGIC := '0';
 SIGNAl Z_Signal				: STD_LOGIC;
 SIGNAl N_Signal 			: STD_LOGIC;
 SIGNAL DATA_OK_Signal 		: STD_LOGIC := '0';
-
 COMPONENT MIC_Project IS
 	PORT (
 		CLK             :   IN STD_LOGIC;
@@ -220,7 +219,7 @@ PROCESS
 		 DATA_OK_Signal		<= '0';
 		
 
-		 --7 - 11: Multiplicar RA por RB e colocar em AC e MBR
+		 --7: Zerar AC.
 		 wait for 40 ns;
 
          AMUX_Signal 		<= '0';
@@ -237,48 +236,64 @@ PROCESS
 		 B_MUX_Signal		<= "00";
 		 C_MUX_Signal		<= "00"; 
 		 DATA_OK_Signal		<= '0';
-		 wait for 40 ns;
-		 
 		 L1: LOOP
 		
-			EXIT L1 WHEN N_Signal = '1';
-				
-				--Colocar RA - 1 em RA e MBR
-				AMUX_Signal 		<= '0';
-				ALU_Signal  		<= "0110";
-				MBR_Signal			<= '1';
-				MAR_Signal  		<= '0';
-				RD_Signal			<= '0';
-				WR_Signal			<= '0';
-				ENC_Signal			<= '1';
-				C_Signal			<= "0000";
-				B_Signal			<= "0110"; -- 1
-				A_Signal			<= "0000"; 
-				A_MUX_Signal		<= "01";
-				B_MUX_Signal		<= "00";
-				C_MUX_Signal		<= "01";
-				DATA_OK_Signal		<= '0';
+			EXIT L1 WHEN N_Signal = '1' AND CLK_Signal = '1';
+		 wait for 40 ns;
+		 
+		--8: Colocar RA - 1 em RA e MBR
+		AMUX_Signal 		<= '0';
+		ALU_Signal  		<= "0110";
+		MBR_Signal			<= '1';
+		MAR_Signal  		<= '0';
+		RD_Signal			<= '0';
+		WR_Signal			<= '0';
+		ENC_Signal			<= '1';
+		C_Signal			<= "0000";
+		B_Signal			<= "0110"; -- 1
+		A_Signal			<= "0000"; 
+		A_MUX_Signal		<= "01";
+		B_MUX_Signal		<= "00";
+		C_MUX_Signal		<= "01";
+		DATA_OK_Signal		<= '0';
 
-				wait for 40 ns;
-				--Colocar AC + RB em AC e MBR
-				AMUX_Signal 		<= '0';
-				ALU_Signal  		<= "0000";
-				MBR_Signal			<= '1';
-				MAR_Signal  		<= '0';
-				RD_Signal			<= '0';
-				WR_Signal			<= '0';
-				ENC_Signal			<= '1';
-				C_Signal			<= "0001";
-				B_Signal			<= "0000";
-				A_Signal			<= "0001"; 
-				A_MUX_Signal		<= "00";
-				B_MUX_Signal		<= "10";
-				C_MUX_Signal		<= "00";
-				DATA_OK_Signal		<= '0';
-				
-				wait for 40 ns;
-	
+		wait for 40 ns;
+		--9: Colocar AC + RB em AC e MBR
+		AMUX_Signal 		<= '0';
+		ALU_Signal  		<= "0000";
+		MBR_Signal			<= '1';
+		MAR_Signal  		<= '0';
+		RD_Signal			<= '0';
+		WR_Signal			<= '0';
+		ENC_Signal			<= '1';
+		C_Signal			<= "0001";
+		B_Signal			<= "0000";
+		A_Signal			<= "0001"; 
+		A_MUX_Signal		<= "00";
+		B_MUX_Signal		<= "10";
+		C_MUX_Signal		<= "00";
+		DATA_OK_Signal		<= '0';
+		
 		END LOOP;
+		wait for 40 ns;
+		 
+		-- 12: Transparência de AC
+		AMUX_Signal 		<= '0';
+		ALU_Signal  		<= "0010";
+		MBR_Signal			<= '1';
+		MAR_Signal  		<= '0';
+		RD_Signal			<= '0';
+		WR_Signal			<= '0';
+		ENC_Signal			<= '0';
+		C_Signal			<= "0000"; 
+		B_Signal			<= "0000"; 
+		A_Signal			<= "0001"; --AC
+		A_MUX_Signal		<= "00";
+		B_MUX_Signal		<= "00";
+		C_MUX_Signal		<= "00";
+		DATA_OK_Signal		<= '0';
+
+		wait for 40 ns;
 		 
 		-- 12: Zerar AC
 		AMUX_Signal 		<= '0';
@@ -298,63 +313,83 @@ PROCESS
 
 		wait for 40 ns;
 		 
-		-- --13: Colocar RB + RB em RA
-		-- AMUX_Signal 		<= '0';
-		-- ALU_Signal  		<= "0000";
-		-- MBR_Signal			<= '1';
-		-- MAR_Signal  		<= '0';
-		-- RD_Signal			<= '0';
-		-- WR_Signal			<= '0';
-		-- ENC_Signal			<= '1';
-		-- C_Signal			<= "0000"; 
-		-- B_Signal			<= "0000"; 
-		-- A_Signal			<= "0000"; 
-		-- A_MUX_Signal		<= "10";
-		-- B_MUX_Signal		<= "10";
-		-- C_MUX_Signal		<= "01";
-		-- DATA_OK_Signal		<= '0';
-		-- wait for 40 ns;
+		--13: Colocar RB + RB em RA
+		AMUX_Signal 		<= '0';
+		ALU_Signal  		<= "0000";
+		MBR_Signal			<= '1';
+		MAR_Signal  		<= '0';
+		RD_Signal			<= '0';
+		WR_Signal			<= '0';
+		ENC_Signal			<= '1';
+		C_Signal			<= "0000"; 
+		B_Signal			<= "0000"; 
+		A_Signal			<= "0000"; 
+		A_MUX_Signal		<= "10";
+		B_MUX_Signal		<= "10";
+		C_MUX_Signal		<= "01";
+		DATA_OK_Signal		<= '0';
+		
+
+wait for 40 ns;
 		 
 
-		-- L2: LOOP
+		L2: LOOP
 		
-		-- 	EXIT L2 WHEN N_Signal = '1';
-		-- 		wait for 40 ns;
-		-- 		--Colocar RA - RB em RA e MBR
-		-- 		AMUX_Signal 		<= '0';
-		-- 		ALU_Signal  		<= "0110";
-		-- 		MBR_Signal			<= '1';
-		-- 		MAR_Signal  		<= '1';
-		-- 		RD_Signal			<= '0';
-		-- 		WR_Signal			<= '0';
-		-- 		ENC_Signal			<= '1';
-		-- 		C_Signal			<= "0000";
-		-- 		B_Signal			<= "0000"; 
-		-- 		A_Signal			<= "0000"; 
-		-- 		A_MUX_Signal		<= "01";
-		-- 		B_MUX_Signal		<= "10";
-		-- 		C_MUX_Signal		<= "01";
-		-- 		DATA_OK_Signal		<= '0';
+			EXIT L2 WHEN N_Signal = '1' AND CLK_Signal = '1';
+				wait for 40 ns;
+				--Colocar RA - RB em RA e MBR
+				AMUX_Signal 		<= '0';
+				ALU_Signal  		<= "0110";
+				MBR_Signal			<= '1';
+				MAR_Signal  		<= '1';
+				RD_Signal			<= '0';
+				WR_Signal			<= '0';
+				ENC_Signal			<= '1';
+				C_Signal			<= "0000";
+				B_Signal			<= "0000"; 
+				A_Signal			<= "0000"; 
+				A_MUX_Signal		<= "01";
+				B_MUX_Signal		<= "10";
+				C_MUX_Signal		<= "01";
+				DATA_OK_Signal		<= '0';
 
-		-- 		wait for 40 ns;
-		-- 		--Colocar AC + 1 em AC e MBR
-		-- 		AMUX_Signal 		<= '0';
-		-- 		ALU_Signal  		<= "0000";
-		-- 		MBR_Signal			<= '1';
-		-- 		MAR_Signal  		<= '0';
-		-- 		RD_Signal			<= '0';
-		-- 		WR_Signal			<= '0';
-		-- 		ENC_Signal			<= '1';
-		-- 		C_Signal			<= "0001"; --AC
-		-- 		B_Signal			<= "0110"; --(1)
-		-- 		A_Signal			<= "0001"; --AC 
-		-- 		A_MUX_Signal		<= "00";
-		-- 		B_MUX_Signal		<= "00";
-		-- 		C_MUX_Signal		<= "00";
-		-- 		DATA_OK_Signal		<= '0';
+				wait for 40 ns;
+				--Colocar AC + 1 em AC e MBR
+				AMUX_Signal 		<= '0';
+				ALU_Signal  		<= "0000";
+				MBR_Signal			<= '1';
+				MAR_Signal  		<= '0';
+				RD_Signal			<= '0';
+				WR_Signal			<= '0';
+				ENC_Signal			<= '1';
+				C_Signal			<= "0001"; --AC
+				B_Signal			<= "0110"; --(1)
+				A_Signal			<= "0001"; --AC 
+				A_MUX_Signal		<= "00";
+				B_MUX_Signal		<= "00";
+				C_MUX_Signal		<= "00";
+				DATA_OK_Signal		<= '0';
 	
-		-- END LOOP;
+		END LOOP;
+		wait for 40 ns;
+		 
+		-- 12: Transparência de AC
+		AMUX_Signal 		<= '0';
+		ALU_Signal  		<= "0010";
+		MBR_Signal			<= '1';
+		MAR_Signal  		<= '0';
+		RD_Signal			<= '0';
+		WR_Signal			<= '0';
+		ENC_Signal			<= '0';
+		C_Signal			<= "0000"; 
+		B_Signal			<= "0000"; 
+		A_Signal			<= "0001"; --AC
+		A_MUX_Signal		<= "00";
+		B_MUX_Signal		<= "00";
+		C_MUX_Signal		<= "00";
+		DATA_OK_Signal		<= '0';
 
+		wait for 40 ns;
 		--Colocar RB - 1 em RA
 		AMUX_Signal 		<= '0';
 		ALU_Signal  		<= "0110";
@@ -373,7 +408,7 @@ PROCESS
 
 		L3: LOOP
 		
-		EXIT L3 WHEN N_Signal = '1';
+		EXIT L3 WHEN N_Signal = '1' AND CLK_Signal = '1';
 		
 		wait for 40 ns;
 		--Colocar RB - 1 em RB e MBR
@@ -400,7 +435,7 @@ PROCESS
 		MAR_Signal  		<= '0';
 		RD_Signal			<= '0';
 		WR_Signal			<= '0';
-		ENC_Signal			<= '0';
+		ENC_Signal			<= '1';
 		C_Signal			<= "0000";
 		B_Signal			<= "0000"; 
 		A_Signal			<= "0000"; 
@@ -410,9 +445,26 @@ PROCESS
 		DATA_OK_Signal		<= '0';
 			
 		end LOOP ;
+		wait for 40 ns;
+
+		-- 12: Transparência de RA
+		AMUX_Signal 		<= '0';
+		ALU_Signal  		<= "0010";
+		MBR_Signal			<= '1';
+		MAR_Signal  		<= '0';
+		RD_Signal			<= '0';
+		WR_Signal			<= '0';
+		ENC_Signal			<= '0';
+		C_Signal			<= "0000"; 
+		B_Signal			<= "0000"; 
+		A_Signal			<= "0000"; 
+		A_MUX_Signal		<= "01";
+		B_MUX_Signal		<= "00";
+		C_MUX_Signal		<= "00";
+		DATA_OK_Signal		<= '0';
 
 		wait for 40 ns;
-		--Colocar RA + 1 em RB
+		--Colocar AC + 1 em RB
 		AMUX_Signal 		<= '0';
 		ALU_Signal  		<= "0000";
 		MBR_Signal			<= '1';
@@ -422,15 +474,15 @@ PROCESS
 		ENC_Signal			<= '1';
 		C_Signal			<= "0000"; 
 		B_Signal			<= "0110"; 
-		A_Signal			<= "0000"; 
-		A_MUX_Signal		<= "01";
+		A_Signal			<= "0001"; 
+		A_MUX_Signal		<= "00";
 		B_MUX_Signal		<= "00";
 		C_MUX_Signal		<= "10";
 		DATA_OK_Signal		<= '0';
 
 		L4: LOOP
 		
-		EXIT L4 WHEN N_Signal = '1';
+		EXIT L4 WHEN N_Signal = '1' AND CLK_Signal = '1';
 		
 		wait for 40 ns;
 		--Colocar RB - 1 em RB e MBR
@@ -442,22 +494,22 @@ PROCESS
 		WR_Signal			<= '0';
 		ENC_Signal			<= '1';
 		C_Signal			<= "0000";
-		B_Signal			<= "0000"; 
-		A_Signal			<= "0110"; 
-		A_MUX_Signal		<= "00";
-		B_MUX_Signal		<= "10";
+		B_Signal			<= "0110"; 
+		A_Signal			<= "0000"; 
+		A_MUX_Signal		<= "10";
+		B_MUX_Signal		<= "00";
 		C_MUX_Signal		<= "10";
 		DATA_OK_Signal		<= '0';
 
 		wait for 40 ns;
 		--Desloca RA uma vez e coloca em RA e MBR
 		AMUX_Signal 		<= '0';
-		ALU_Signal  		<= "1001";
+		ALU_Signal  		<= "1101";
 		MBR_Signal			<= '1';
 		MAR_Signal  		<= '0';
 		RD_Signal			<= '0';
 		WR_Signal			<= '0';
-		ENC_Signal			<= '0';
+		ENC_Signal			<= '1';
 		C_Signal			<= "0000";
 		B_Signal			<= "0000"; 
 		A_Signal			<= "0000"; 
@@ -505,7 +557,7 @@ PROCESS
 
 		wait for 40 ns;
 
-		if MBR_TO_MEM_Signal < "0000000000000000" then
+		if MBR_TO_MEM_Signal(15) = '1' then
 			--Coloca RB em AC e MBR
 			AMUX_Signal 		<= '0';
 			ALU_Signal  		<= "0010";
@@ -514,7 +566,7 @@ PROCESS
 			RD_Signal			<= '0';
 			WR_Signal			<= '0';
 			ENC_Signal			<= '1';
-			C_Signal			<= "0000"; 
+			C_Signal			<= "0001"; 
 			B_Signal			<= "0000"; 
 			A_Signal			<= "0000";
 			A_MUX_Signal		<= "10";
@@ -530,7 +582,7 @@ PROCESS
 			RD_Signal			<= '0';
 			WR_Signal			<= '0';
 			ENC_Signal			<= '1';
-			C_Signal			<= "0000"; 
+			C_Signal			<= "0001"; 
 			B_Signal			<= "0000"; 
 			A_Signal			<= "0000";
 			A_MUX_Signal		<= "01";
