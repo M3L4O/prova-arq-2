@@ -26,7 +26,8 @@ PORT (
     RD_OUTPUT       :   OUT STD_LOGIC;
     WR_OUTPUT       :   OUT STD_LOGIC;
     Z               :   OUT STD_LOGIC;
-    N               :   OUT STD_LOGIC);
+    N               :   OUT STD_LOGIC
+    );
 
 END MIC_Project;
 
